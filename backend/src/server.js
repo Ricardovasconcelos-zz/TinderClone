@@ -1,8 +1,11 @@
 const express = require('express')
 const routes = require('./routes')
 const mongoose = require('mongoose')
+const cors = require('cors')
 const server = express()
 
+
+server.use(cors())
 //para Express entender json
 server.use(express.json())
 
