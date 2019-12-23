@@ -1,12 +1,10 @@
 const axios = require('axios')
-
 const Dev = require('../models/Dev')
 
 module.exports ={
     async index(req, res){
         const { user } = req.headers
 
-        //Pega todos os dados do user, ex: name, likes, dislikes, bio
         const loggedDev = await Dev.findById(user)
 
         const users = await Dev.find({
@@ -33,7 +31,6 @@ module.exports ={
 
         const {name, bio, avatar_url} = response.data
 
-        //Criando usuario dentro do banco
         const dev = await Dev.create({
             name,
             user: username,
