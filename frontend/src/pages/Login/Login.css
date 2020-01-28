@@ -10,6 +10,12 @@
   display: flex;
   flex-direction: column;
 }
+.login-container .logo {
+  margin: auto;
+  width: 140px;
+  height: 140px;
+  margin-bottom: -50px;
+}
 .login-container form input {
   margin-top: 20px;
   border: 1px solid #ddd;
