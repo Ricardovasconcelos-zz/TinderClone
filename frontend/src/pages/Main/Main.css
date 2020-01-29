@@ -4,6 +4,12 @@
   padding: 50px 0;
   text-align: center;
 }
+.main-container .logo {
+  margin: auto;
+  margin-top: -40px;
+  width: 120px;
+  height: 120px;
+}
 .main-container ul {
   list-style: none;
   display: grid;
@@ -57,4 +63,15 @@
 .main-container ul li .buttons button:hover img {
   transform: translateY(-5px);
   transition: all 0.2s;
+}
+.empty {
+  text-align: center;
+}
+.empty .icon {
+  margin: 50px 0 30px 0;
+  text-align: center;
+  width: 170px;
+}
+.empty h2 {
+  color: #c95f3b;
 }
