@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import io from "socket.io-client";
 import { Link } from "react-router-dom";
 import "./Main.css";
 
@@ -7,9 +8,10 @@ import logo from "../../assets/logo.png";
 import icon from "../../assets/icon.png";
 import like from "../../assets/like.svg";
 import dislike from "../../assets/dislike.svg";
-
+import itsamatch from "../../assets/itsamatch.png";
 export default function Main({ match }) {
   const [users, setUsers] = useState([]);
+  const [matchDev, setMatchDev] = useState(null);
 
   useEffect(() => {
     async function loadUsers() {
@@ -23,6 +25,15 @@ export default function Main({ match }) {
     loadUsers();
   }, [match.params.id]);
 
+  useEffect(() => {
+    const socket = io("http://localhost:3333", {
+      query: { user: match.params.id }
+    });
+
+    socket.on("match", dev => {
+      setMatchDev(dev);
+    });
+  }, [match.params.id]);
   async function handleLike(id) {
     await api.post(`/devs/${id}/Likes`, null, {
       headers: { user: match.params.id }
@@ -42,7 +53,7 @@ export default function Main({ match }) {
   return (
     <div className="main-container">
       <Link to="/">
-        <img src={logo} className="logo" alt="Tinder" />
+        <img src={logo} alt="Tinder" />
       </Link>
 
       {users.length > 0 ? (
@@ -71,6 +82,17 @@ export default function Main({ match }) {
         <div className="empty">
           <img src={icon} alt="Tinder" className="icon" />
           <h2>There's no one else here.</h2>
+        </div>
+      )}
+      {matchDev && (
+        <div className="match-container">
+          <img src={itsamatch} alt="it's a match" />
+          <img className="userImage" src={matchDev.avatar} alt="" />
+          <strong>{matchDev.name}</strong>
+          <p>{matchDev.bio}</p>
+          <button type="button" onClick={() => setMatchDev(null)}>
+            Fechar
+          </button>
         </div>
       )}
     </div>

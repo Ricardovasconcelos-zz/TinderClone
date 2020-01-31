@@ -4,17 +4,14 @@
   justify-content: center;
   align-items: center;
 }
+.logo {
+  margin: auto;
+}
 .login-container form {
   width: 100%;
   max-width: 300px;
   display: flex;
   flex-direction: column;
-}
-.login-container .logo {
-  margin: auto;
-  width: 140px;
-  height: 140px;
-  margin-bottom: -50px;
 }
 .login-container form input {
   margin-top: 20px;
